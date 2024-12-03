@@ -23,8 +23,8 @@ EErrorCode CChallenge_01::SetUp_FirstPart()
         vector<string> lineSplits;
         FileHelper::SplitLine(line, "   ", lineSplits);
 
-		m_LeftSet.insert(stoi(lineSplits[0]));
-		m_RightSet.insert(stoi(lineSplits[1]));
+        m_LeftSet.insert(stoi(lineSplits[0]));
+        m_RightSet.insert(stoi(lineSplits[1]));
     }
 
     return EErrorCode::Success;
@@ -58,33 +58,33 @@ EErrorCode CChallenge_01::CleanUp_FirstPart()
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 EErrorCode CChallenge_01::SetUp_SecondPart()
 {
-	vector<string> lines;
-	EErrorCode const readErrorCode = FileHelper::ReadLines(sm_inputFilePath, lines);
-	if (readErrorCode != EErrorCode::Success)
-	{
-		return readErrorCode;
-	}
+    vector<string> lines;
+    EErrorCode const readErrorCode = FileHelper::ReadLines(sm_inputFilePath, lines);
+    if (readErrorCode != EErrorCode::Success)
+    {
+        return readErrorCode;
+    }
 
-	for (const string& line : lines)
-	{
-		vector<string> lineSplits;
-		FileHelper::SplitLine(line, "   ", lineSplits);
+    for (const string& line : lines)
+    {
+        vector<string> lineSplits;
+        FileHelper::SplitLine(line, "   ", lineSplits);
 
-		m_LeftSet.insert(stoi(lineSplits[0]));
-		m_RightSet.insert(stoi(lineSplits[1]));
-	}
+        m_LeftSet.insert(stoi(lineSplits[0]));
+        m_RightSet.insert(stoi(lineSplits[1]));
+    }
 
-	return EErrorCode::Success;
+    return EErrorCode::Success;
 }
 
 EErrorCode CChallenge_01::Run_SecondPart()
 {
-	long long similarityScore = 0ll;
+    long long similarityScore = 0ll;
 
-	multiset<int>::const_iterator leftIt = m_LeftSet.cbegin();
-	multiset<int>::const_iterator rightIt = m_RightSet.cbegin();
-	while (leftIt != m_LeftSet.cend() && rightIt != m_RightSet.cend())
-	{
+    multiset<int>::const_iterator leftIt = m_LeftSet.cbegin();
+    multiset<int>::const_iterator rightIt = m_RightSet.cbegin();
+    while (leftIt != m_LeftSet.cend() && rightIt != m_RightSet.cend())
+    {
         const int& leftID = *leftIt;
         while (rightIt != m_RightSet.cend() && (*rightIt) < leftID)
         {
@@ -92,25 +92,25 @@ EErrorCode CChallenge_01::Run_SecondPart()
         }
 
         if (leftID == (*rightIt))
-		{
-			while (rightIt != m_RightSet.cend() && (*rightIt) == leftID)
-			{
+        {
+            while (rightIt != m_RightSet.cend() && (*rightIt) == leftID)
+            {
                 similarityScore += leftID;
                 ++rightIt;
-			}
+            }
         }
 
         ++leftIt;
-	}
+    }
 
-	cout << "The similarity score between both lists is " << similarityScore << "." << endl;
+    cout << "The similarity score between both lists is " << similarityScore << "." << endl;
 
-	return EErrorCode::Success;
+    return EErrorCode::Success;
 }
 
 EErrorCode CChallenge_01::CleanUp_SecondPart()
 {
-	m_LeftSet.clear();
-	m_RightSet.clear();
-	return EErrorCode::Success;
+    m_LeftSet.clear();
+    m_RightSet.clear();
+    return EErrorCode::Success;
 }
