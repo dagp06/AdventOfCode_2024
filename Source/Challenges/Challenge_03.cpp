@@ -131,7 +131,7 @@ bool CChallenge_03::ProcessMul(const string& line, int& i, long long& totalSum) 
         return false;
     }
 
-    i += sX.size();
+    i += static_cast<int>(sX.size());
 
     if (!ProcessPattern(line, i, ","))
         return false;
@@ -164,7 +164,7 @@ bool CChallenge_03::ProcessMul(const string& line, int& i, long long& totalSum) 
         return false;
     }
 
-    i += sY.size();
+    i += static_cast<int>(sY.size());
 
     if (!ProcessPattern(line, i, ")"))
         return false;
