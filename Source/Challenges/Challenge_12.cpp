@@ -5,7 +5,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 string const CChallenge_12::sm_inputFilePath = "Inputs/Input_Challenge_12.txt";
-CChallenge_12::Position const CChallenge_12::sm_directionDeltas[(int)Direction::Count] = { {0, -1}, {1, 0}, {0, 1}, {-1, 0} };
+Position const CChallenge_12::sm_directionDeltas[(int)Direction::Count] = { {0, -1}, {1, 0}, {0, 1}, {-1, 0} };
 
 
 

@@ -240,6 +240,7 @@
     <ClInclude Include="Source\CommonDefinitions.h"/>
     <ClInclude Include="Source\Generated\GeneratedDefinitions.h"/>
     <ClInclude Include="Source\Helpers\FileHelpers.h"/>
+    <ClInclude Include="Source\Helpers\Position.h"/>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

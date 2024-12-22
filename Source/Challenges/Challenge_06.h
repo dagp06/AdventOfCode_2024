@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Common/Challenge.h"
+#include "../Helpers/Position.h"
 
 #include <set>
 
@@ -23,17 +24,6 @@ private:
         Down,
         Left,
         Count
-    };
-
-    struct Position
-    {
-        Position(int _x = 0, int _y = 0)
-            : x(_x), y(_y) {}
-        bool operator==(const Position& _other) const { return x == _other.x && y == _other.y; }
-        bool operator<(const Position& _other) const { return x < _other.x || (x == _other.x && y < _other.y); }
-        
-        int x;
-        int y;
     };
 
     struct MapPosition

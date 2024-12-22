@@ -109,5 +109,8 @@
     <ClInclude Include="Source\Helpers\FileHelpers.h">
       <Filter>Source\Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Helpers\Position.h">
+      <Filter>Source\Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
