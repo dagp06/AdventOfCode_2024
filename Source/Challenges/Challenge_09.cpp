@@ -1,5 +1,5 @@
-#include "Challenge_09.h"
-#include "../Helpers/FileHelpers.h"
+#include <Challenges/Challenge_09.h>
+#include <Helpers/FileHelpers.h>
 
 #include <list>
 

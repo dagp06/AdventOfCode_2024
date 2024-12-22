@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Common/Challenge.h"
+#include <Challenges/Common/Challenge.h>
 
 #include <set>
 

@@ -3,7 +3,7 @@ echo "  ==  GENERATING CODE DEFINITIONS  ==  "
 
 DEFINITIONS_FILE="GeneratedDefinitions.h"
 PATH_SEPARATOR=":::"
-FOUND_H_FILES=$(find "../Challenges" -maxdepth 1 -type f -name "*.h" | tac)
+FOUND_H_FILES=$(find "../Challenges" -maxdepth 1 -type f -name "*.h" | sed 's|^\.\./||' | tac)
 
 #========================================================================================
 #  Challenge includes
@@ -22,7 +22,7 @@ fi
 
 # Add the current .h entries
 echo "$FOUND_H_FILES" | while read -r FILE; do
-    sed -i "$REGION_BEGIN a\\#include \"$FILE\"" $DEFINITIONS_FILE
+    sed -i "$REGION_BEGIN a\\#include \<$FILE\>" $DEFINITIONS_FILE
     echo "      +  $FILE"
 done
 

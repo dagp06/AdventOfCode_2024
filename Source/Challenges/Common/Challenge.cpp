@@ -1,4 +1,4 @@
-#include "Challenge.h"
+#include <Challenges/Common/Challenge.h>
 
 
 

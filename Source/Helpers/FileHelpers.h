@@ -1,5 +1,5 @@
 #pragma once
-#include "../CommonDefinitions.h"
+#include <CommonDefinitions.h>
 
 namespace FileHelper
 {

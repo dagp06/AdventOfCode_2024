@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Common/Challenge.h"
-#include "../Helpers/Position.h"
+#include <Challenges/Common/Challenge.h>
+#include <Helpers/Position.h>
 
 #include <set>
 

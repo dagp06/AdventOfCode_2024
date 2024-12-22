@@ -1,4 +1,4 @@
-#include "Generated/GeneratedDefinitions.h"
+#include <Generated/GeneratedDefinitions.h>
 #include <chrono>
 
 #define TIME_NOW(varName) std::chrono::high_resolution_clock::time_point const varName = std::chrono::high_resolution_clock::now()
