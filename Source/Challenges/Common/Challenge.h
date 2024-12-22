@@ -2,6 +2,7 @@
 
 #include "../../CommonDefinitions.h"
 
+
 class CChallenge
 {
 public:

@@ -33,8 +33,10 @@ private:
         int y;
     };
 
-    struct PositionHash {
-        size_t operator()(const Position& _pos) const {
+    struct PositionHash 
+    {
+        size_t operator()(const Position& _pos) const 
+        {
             return hash<int>()(_pos.x) ^ (hash<int>()(_pos.y) << 1);
         }
     };
