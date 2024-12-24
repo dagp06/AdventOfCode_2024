@@ -32,7 +32,7 @@ EErrorCode CChallenge_06::SetUp_FirstPart()
             switch (ch)
             {
                 case '^':
-                    m_GuardPos = Position(j, i);
+                    m_GuardPos = Vector2(j, i);
                     currentRow.push_back(PosState::Visited);
                     break;
 
@@ -58,7 +58,7 @@ EErrorCode CChallenge_06::Run_FirstPart()
     Direction guardDirection = Direction::Up;
     while (true)
     {
-        Position nextPosition = m_GuardPos;
+        Vector2 nextPosition = m_GuardPos;
         switch (guardDirection)
         {
             case Direction::Up:
@@ -140,14 +140,14 @@ EErrorCode CChallenge_06::SetUp_SecondPart()
         currentRow.reserve(line.size());
         for (int j = 0; j < line.size(); ++j)
         {
-            currentRow.emplace_back(Position(j, i));
+            currentRow.emplace_back(Vector2(j, i));
             MapPosition& currentMapPos = currentRow.back();
 
             const char& ch = line[j];
             switch (ch)
             {
                 case '^':
-                    m_GuardPos = Position(j, i);
+                    m_GuardPos = Vector2(j, i);
                     currentMapPos.Visit(Direction::Up);
                     break;
 
@@ -173,7 +173,7 @@ EErrorCode CChallenge_06::Run_SecondPart()
 
     while (true)
     {
-        Position nextPosition = m_GuardPos;
+        Vector2 nextPosition = m_GuardPos;
         switch (guardDirection)
         {
             case Direction::Up:
@@ -230,19 +230,19 @@ EErrorCode CChallenge_06::CleanUp_SecondPart()
     return EErrorCode::Success;
 }
 
-bool CChallenge_06::IsPosInMappedArea_1(const Position& pos) const
+bool CChallenge_06::IsPosInMappedArea_1(const Vector2& pos) const
 {
-    return pos.x >= 0 && pos.x < m_Map[0].size() &&
-        pos.y >= 0 && pos.y < m_Map.size();
+    return pos.x >= 0ll && pos.x < (long long)m_Map[0].size() &&
+        pos.y >= 0ll && pos.y < (long long)m_Map.size();
 }
 
-bool CChallenge_06::IsPosInMappedArea_2(const Position& pos) const
+bool CChallenge_06::IsPosInMappedArea_2(const Vector2& pos) const
 {
-    return pos.x >= 0 && pos.x < m_MapPositions[0].size() &&
-        pos.y >= 0 && pos.y < m_MapPositions.size();
+    return pos.x >= 0ll && pos.x < (long long)m_MapPositions[0].size() &&
+        pos.y >= 0ll && pos.y < (long long)m_MapPositions.size();
 }
 
-void CChallenge_06::TestPosAsObstacle(const Position& _obstaclePos, const Position& _guardPos, const Direction& _guardDirection)
+void CChallenge_06::TestPosAsObstacle(const Vector2& _obstaclePos, const Vector2& _guardPos, const Direction& _guardDirection)
 {
     // We already tested this pos
     if (m_TestedObstaclePos.find(_obstaclePos) != m_TestedObstaclePos.end())
@@ -253,11 +253,11 @@ void CChallenge_06::TestPosAsObstacle(const Position& _obstaclePos, const Positi
 
     vector<vector<MapPosition>> testMap = m_MapPositions; // Copy map for local test
     testMap[_obstaclePos.y][_obstaclePos.x].m_IsObstacle = true; // Set new pos as obstacle
-    Position testPos = _guardPos; // Start in front of the new potential obstacle
+    Vector2 testPos = _guardPos; // Start in front of the new potential obstacle
     Direction testDirection = static_cast<Direction>((static_cast<int>(_guardDirection) + 1) % static_cast<int>(Direction::Count)); // Turn right
     while (true)
     {
-        Position nextPosition = testPos;
+        Vector2 nextPosition = testPos;
         switch (testDirection)
         {
             case Direction::Up:
@@ -307,7 +307,7 @@ void CChallenge_06::TestPosAsObstacle(const Position& _obstaclePos, const Positi
     }
 }
 
-void CChallenge_06::DrawMap_1(const Position& _guardPos, const Position& _debugObstaclePos) const
+void CChallenge_06::DrawMap_1(const Vector2& _guardPos, const Vector2& _debugObstaclePos) const
 {
     for (int i = 0; i < m_Map.size(); ++i)
     {
@@ -320,13 +320,13 @@ void CChallenge_06::DrawMap_1(const Position& _guardPos, const Position& _debugO
                 continue;
             }
 
-            if (m_PosWhereObstacleWouldCauseLoop.find(Position(j, i)) != m_PosWhereObstacleWouldCauseLoop.end())
+            if (m_PosWhereObstacleWouldCauseLoop.find(Vector2(j, i)) != m_PosWhereObstacleWouldCauseLoop.end())
             {
                 cout << "O";
                 continue;
             }
 
-            if (_debugObstaclePos == Position(j, i))
+            if (_debugObstaclePos == Vector2(j, i))
             {
                 cout << "O";
                 continue;
@@ -354,7 +354,7 @@ void CChallenge_06::DrawMap_1(const Position& _guardPos, const Position& _debugO
 }
 
 
-void CChallenge_06::DrawMap_2(const vector<vector<MapPosition>>& _map, const Position& _guardPos, const Position& _debugObstaclePos /*= Position(-1, -1)*/) const
+void CChallenge_06::DrawMap_2(const vector<vector<MapPosition>>& _map, const Vector2& _guardPos, const Vector2& _debugObstaclePos /*= Position(-1, -1)*/) const
 {
     for (int i = 0; i < _map.size(); ++i)
     {
@@ -367,13 +367,13 @@ void CChallenge_06::DrawMap_2(const vector<vector<MapPosition>>& _map, const Pos
                 continue;
             }
 
-            if (_debugObstaclePos == Position(-1, -1) && m_PosWhereObstacleWouldCauseLoop.find(Position(j, i)) != m_PosWhereObstacleWouldCauseLoop.end())
+            if (_debugObstaclePos == Vector2(-1, -1) && m_PosWhereObstacleWouldCauseLoop.find(Vector2(j, i)) != m_PosWhereObstacleWouldCauseLoop.end())
             {
                 cout << "O";
                 continue;
             }
 
-            if (_debugObstaclePos == Position(j, i))
+            if (_debugObstaclePos == Vector2(j, i))
             {
                 cout << "0";
                 continue;

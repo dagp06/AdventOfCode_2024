@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Challenges/Common/Challenge.h>
-#include <Helpers/Position.h>
+#include <Helpers/Vector2.h>
 
 #include <set>
 
@@ -29,7 +29,7 @@ private:
     struct MapPosition
     {
         public:
-            MapPosition(const Position& _pos) : m_Pos(_pos) {}
+            MapPosition(const Vector2& _pos) : m_Pos(_pos) {}
 
             void Visit(Direction _incomingDirection) 
             { 
@@ -46,7 +46,7 @@ private:
                 return m_VisitedDirections.find(_incomingDirection) != m_VisitedDirections.end();
             }
 
-            Position m_Pos;
+            Vector2 m_Pos;
             set<Direction> m_VisitedDirections;
             bool m_IsObstacle = false;
     };
@@ -59,20 +59,20 @@ private:
     virtual EErrorCode Run_SecondPart() override;
     virtual EErrorCode CleanUp_SecondPart() override;
 
-    bool IsPosInMappedArea_1(const Position& pos) const;
-    bool IsPosInMappedArea_2(const Position& pos) const;
+    bool IsPosInMappedArea_1(const Vector2& pos) const;
+    bool IsPosInMappedArea_2(const Vector2& pos) const;
 
-    void TestPosAsObstacle(const Position& _obstaclePos, const Position& _guardNextPos, const Direction& _guardDirection);
-    void DrawMap_1(const Position& _guardPos, const Position& _debugObstaclePos = Position(-1, -1)) const;
-    void DrawMap_2(const vector<vector<MapPosition>>& _map, const Position& _guardPos, const Position& _debugObstaclePos = Position(-1, -1)) const;
+    void TestPosAsObstacle(const Vector2& _obstaclePos, const Vector2& _guardNextPos, const Direction& _guardDirection);
+    void DrawMap_1(const Vector2& _guardPos, const Vector2& _debugObstaclePos = Vector2(-1, -1)) const;
+    void DrawMap_2(const vector<vector<MapPosition>>& _map, const Vector2& _guardPos, const Vector2& _debugObstaclePos = Vector2(-1, -1)) const;
 
     static string const sm_inputFilePath;
 
     vector<vector<PosState>> m_Map;
 
     vector<vector<MapPosition>> m_MapPositions;
-    Position m_GuardPos;
+    Vector2 m_GuardPos;
 
-    set<Position> m_PosWhereObstacleWouldCauseLoop;
-    set<Position> m_TestedObstaclePos;
+    set<Vector2> m_PosWhereObstacleWouldCauseLoop;
+    set<Vector2> m_TestedObstaclePos;
 };

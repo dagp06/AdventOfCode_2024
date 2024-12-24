@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Challenges/Common/Challenge.h>
-#include <Helpers/Position.h>
+#include <Helpers/Vector2.h>
 
 #include <unordered_set>
 #include <functional>
@@ -30,14 +30,14 @@ private:
     virtual EErrorCode Run_SecondPart() override;
     virtual EErrorCode CleanUp_SecondPart() override;
 
-    void FindHikingTrail(const Position& _currentPos, int _targetHeight, PositionSet& _trailPeaks, long long& _totalScore, bool _uniqueOnly);
-    bool IsPosInMappedArea(const Position& pos) const;
+    void FindHikingTrail(const Vector2& _currentPos, int _targetHeight, Vector2Set& _trailPeaks, long long& _totalScore, bool _uniqueOnly);
+    bool IsPosInMappedArea(const Vector2& pos) const;
 
     static string const sm_inputFilePath;
-    static Position const sm_directionDeltas[(int)Direction::Count];
+    static Vector2 const sm_directionDeltas[(int)Direction::Count];
 
 
     typedef vector<vector<int>> Map;
     Map m_Map;
-    PositionSet m_TrailHeads;
+    Vector2Set m_TrailHeads;
 };

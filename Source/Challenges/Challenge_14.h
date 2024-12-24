@@ -3,13 +3,18 @@
 #include <Challenges/Common/Challenge.h>
 #include <Helpers/Vector2.h>
 
-#include <map>
-
 using namespace std;
 
-class CChallenge_08 : public CChallenge
+class CChallenge_14 : public CChallenge
 {
 private:
+    struct Robot
+    {
+        Vector2 pos;
+        Vector2 velocity;
+        void Move(int _secondsToElapse);
+    };
+
     virtual EErrorCode SetUp_FirstPart() override;
     virtual EErrorCode Run_FirstPart() override;
     virtual EErrorCode CleanUp_FirstPart() override;
@@ -18,12 +23,12 @@ private:
     virtual EErrorCode Run_SecondPart() override;
     virtual EErrorCode CleanUp_SecondPart() override;
 
-    bool IsPosInMappedArea(const Vector2& pos) const;
+    float ComputeEntropy() const;
+    void DrawMap() const;
 
     static string const sm_inputFilePath;
+    static Vector2 const sm_mapSize;
 
-    typedef map<char, vector<Vector2>> FrequencyPosMap;
-    FrequencyPosMap m_FrequencyPos;
-    int m_RowCount;
-    int m_ColCount;
+    vector<Robot> m_Robots;
+    vector<vector<int>> m_RobotsMap;
 };

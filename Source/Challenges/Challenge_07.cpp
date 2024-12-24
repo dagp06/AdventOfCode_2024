@@ -20,7 +20,7 @@ EErrorCode CChallenge_07::SetUp_FirstPart()
 
     for (const string& line : lines)
     {
-        m_CalibrationEquations.push_back(CalibrationEquation());
+        m_CalibrationEquations.emplace_back();
         CalibrationEquation& equation = m_CalibrationEquations.back();
 
         vector<string> lineSplit;
@@ -75,7 +75,7 @@ EErrorCode CChallenge_07::SetUp_SecondPart()
 
     for (const string& line : lines)
     {
-        m_CalibrationEquations.push_back(CalibrationEquation());
+        m_CalibrationEquations.emplace_back();
         CalibrationEquation& equation = m_CalibrationEquations.back();
 
         vector<string> lineSplit;

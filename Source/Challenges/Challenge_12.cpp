@@ -5,7 +5,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 string const CChallenge_12::sm_inputFilePath = "Inputs/Input_Challenge_12.txt";
-Position const CChallenge_12::sm_directionDeltas[(int)Direction::Count] = { {0, -1}, {1, 0}, {0, 1}, {-1, 0} };
+Vector2 const CChallenge_12::sm_directionDeltas[(int)Direction::Count] = { {0, -1}, {1, 0}, {0, 1}, {-1, 0} };
 
 
 
@@ -29,7 +29,7 @@ EErrorCode CChallenge_12::SetUp_FirstPart()
 
         for (int j = 0; j < line.size(); ++j)
         {
-            m_UnprocessedPlants.insert(Position(j, i));
+            m_UnprocessedPlants.insert(Vector2(j, i));
         }
     }
 
@@ -40,10 +40,10 @@ EErrorCode CChallenge_12::Run_FirstPart()
 {
     long long totalFencingPrice = 0ll;
 
-    PositionSet::const_iterator plantToProcessIt = m_UnprocessedPlants.cbegin();
+    Vector2Set::const_iterator plantToProcessIt = m_UnprocessedPlants.cbegin();
     while (plantToProcessIt != m_UnprocessedPlants.cend())
     {
-        const Position& plantPos = *(plantToProcessIt);
+        const Vector2& plantPos = *(plantToProcessIt);
         const char& plantType = m_Garden[plantPos.y][plantPos.x];
 
         totalFencingPrice += ComputeFencingPrice_Part1(plantType, plantPos);
@@ -83,7 +83,7 @@ EErrorCode CChallenge_12::SetUp_SecondPart()
 
         for (int j = 0; j < line.size(); ++j)
         {
-            m_UnprocessedPlants.insert(Position(j, i));
+            m_UnprocessedPlants.insert(Vector2(j, i));
         }
     }
 
@@ -94,10 +94,10 @@ EErrorCode CChallenge_12::Run_SecondPart()
 {
     long long totalFencingPrice = 0ll;
 
-    PositionSet::const_iterator plantToProcessIt = m_UnprocessedPlants.cbegin();
+    Vector2Set::const_iterator plantToProcessIt = m_UnprocessedPlants.cbegin();
     while (plantToProcessIt != m_UnprocessedPlants.cend())
     {
-        const Position& plantPos = *(plantToProcessIt);
+        const Vector2& plantPos = *(plantToProcessIt);
         const char& plantType = m_Garden[plantPos.y][plantPos.x];
 
         totalFencingPrice += ComputeFencingPrice_Part2(plantType, plantPos);
@@ -118,7 +118,7 @@ EErrorCode CChallenge_12::CleanUp_SecondPart()
 }
 
 
-long long CChallenge_12::ComputeFencingPrice_Part1(const char& _plantType, const Position _plantPos)
+long long CChallenge_12::ComputeFencingPrice_Part1(const char& _plantType, const Vector2 _plantPos)
 {
     int regionArea = 0;
     int regionPerimeter = 0;
@@ -128,7 +128,7 @@ long long CChallenge_12::ComputeFencingPrice_Part1(const char& _plantType, const
 }
 
 
-void CChallenge_12::ComputeRegion_Part1(const char& _plantType, const Position _plantPos, int& _regionArea, int& _regionPerimeter)
+void CChallenge_12::ComputeRegion_Part1(const char& _plantType, const Vector2 _plantPos, int& _regionArea, int& _regionPerimeter)
 {
     if (!IsPosInRegion(_plantPos, _plantType))
     {
@@ -137,7 +137,7 @@ void CChallenge_12::ComputeRegion_Part1(const char& _plantType, const Position _
         return;
     }
 
-    PositionSet::iterator plantIt = m_UnprocessedPlants.find(_plantPos);
+    Vector2Set::iterator plantIt = m_UnprocessedPlants.find(_plantPos);
     if (plantIt == m_UnprocessedPlants.end())
     {
         // Already processed this plant
@@ -158,7 +158,7 @@ void CChallenge_12::ComputeRegion_Part1(const char& _plantType, const Position _
 }
 
 
-long long CChallenge_12::ComputeFencingPrice_Part2(const char& _plantType, const Position _plantPos)
+long long CChallenge_12::ComputeFencingPrice_Part2(const char& _plantType, const Vector2 _plantPos)
 {
     int regionArea = 0;
     EdgeSet regionEdges;
@@ -168,17 +168,17 @@ long long CChallenge_12::ComputeFencingPrice_Part2(const char& _plantType, const
 }
 
 
-void CChallenge_12::ComputeRegion_Part2(const char& _plantType, const Position _plantPos, const Direction& _incomingDir, int& _regionArea, EdgeSet& _regionEdges)
+void CChallenge_12::ComputeRegion_Part2(const char& _plantType, const Vector2 _plantPos, const Direction& _incomingDir, int& _regionArea, EdgeSet& _regionEdges)
 {
     if (!IsPosInRegion(_plantPos, _plantType))
     {
         // Stepped outside the region, add a fence
-        Position preStepPos = _plantPos - sm_directionDeltas[((int)_incomingDir)];
+        Vector2 preStepPos = _plantPos - sm_directionDeltas[((int)_incomingDir)];
         ComputeEdge(_plantType, preStepPos, _incomingDir, _regionEdges);
         return;
     }
 
-    PositionSet::iterator plantIt = m_UnprocessedPlants.find(_plantPos);
+    Vector2Set::iterator plantIt = m_UnprocessedPlants.find(_plantPos);
     if (plantIt == m_UnprocessedPlants.end())
     {
         // Already processed this plant
@@ -198,7 +198,7 @@ void CChallenge_12::ComputeRegion_Part2(const char& _plantType, const Position _
     }
 }
 
-void CChallenge_12::ComputeEdge(const char& _plantType, const Position _plantPos, const Direction& _incomingDir, EdgeSet& _regionEdges)
+void CChallenge_12::ComputeEdge(const char& _plantType, const Vector2 _plantPos, const Direction& _incomingDir, EdgeSet& _regionEdges)
 {
     for (const Edge& edge : _regionEdges)
     {
@@ -235,16 +235,16 @@ void CChallenge_12::ComputeEdge(const char& _plantType, const Position _plantPos
         break;
     }
 
-    Position frontSteppingDelta = sm_directionDeltas[(int)_incomingDir];
+    Vector2 frontSteppingDelta = sm_directionDeltas[(int)_incomingDir];
     for (int i = 0; i < explorationDirs.size(); ++i)
     {
         Direction explorationDir = explorationDirs[i];
-        Position sideSteppingDelta = sm_directionDeltas[(int)explorationDir];
+        Vector2 sideSteppingDelta = sm_directionDeltas[(int)explorationDir];
 
-        Position sideSteppingPos = _plantPos + sideSteppingDelta;
+        Vector2 sideSteppingPos = _plantPos + sideSteppingDelta;
         while (IsPosInRegion(sideSteppingPos, _plantType)) // Edge ends if we side-step outside of current region
         {
-            Position frontSteppingPos = sideSteppingPos + frontSteppingDelta;
+            Vector2 frontSteppingPos = sideSteppingPos + frontSteppingDelta;
             if (!IsPosInRegion(frontSteppingPos, _plantType))
             {
                 // Front-stepped outside the region, still facing the edge
@@ -263,13 +263,13 @@ void CChallenge_12::ComputeEdge(const char& _plantType, const Position _plantPos
     _regionEdges.insert(newEdge);
 }
 
-bool CChallenge_12::IsPosInMappedArea(const Position& _pos) const
+bool CChallenge_12::IsPosInMappedArea(const Vector2& _pos) const
 {
-    return _pos.x >= 0 && _pos.x < m_Garden[0].size() &&
-        _pos.y >= 0 && _pos.y < m_Garden.size();
+    return _pos.x >= 0ll && _pos.x < (long long)m_Garden[0].size() &&
+        _pos.y >= 0ll && _pos.y < (long long)m_Garden.size();
 }
 
-bool CChallenge_12::IsPosInRegion(const Position& _pos, const char& _regionChar) const
+bool CChallenge_12::IsPosInRegion(const Vector2& _pos, const char& _regionChar) const
 {
     return IsPosInMappedArea(_pos) && m_Garden[_pos.y][_pos.x] == _regionChar;
 }

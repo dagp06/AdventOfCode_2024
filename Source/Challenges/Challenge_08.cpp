@@ -27,7 +27,7 @@ EErrorCode CChallenge_08::SetUp_FirstPart()
             const char& c = lines[row][col];
             if (isalnum(c))
             {
-                m_FrequencyPos[c].push_back(Position(col, row));
+                m_FrequencyPos[c].push_back(Vector2(col, row));
             }
         }
     }
@@ -37,19 +37,19 @@ EErrorCode CChallenge_08::SetUp_FirstPart()
 
 EErrorCode CChallenge_08::Run_FirstPart()
 {
-    set<Position> antinodes;
+    set<Vector2> antinodes;
 
     for (FrequencyPosMap::const_iterator it = m_FrequencyPos.begin(); it != m_FrequencyPos.end(); ++it)
     {
-        const vector<Position>& posList = it->second;
+        const vector<Vector2>& posList = it->second;
         for (int i = 0; i < posList.size() - 1; ++i)
         {
-            const Position& pos = posList[i];
+            const Vector2& pos = posList[i];
             for (int j = i + 1; j < posList.size(); ++j)
             {
-                const Position& otherPos = posList[j];
+                const Vector2& otherPos = posList[j];
 
-                Position antinode = pos + (pos - otherPos);
+                Vector2 antinode = pos + (pos - otherPos);
                 if (IsPosInMappedArea(antinode))
                     antinodes.insert(antinode);
 
@@ -92,7 +92,7 @@ EErrorCode CChallenge_08::SetUp_SecondPart()
             const char& c = lines[row][col];
             if (isalnum(c))
             {
-                m_FrequencyPos[c].push_back(Position(col, row));
+                m_FrequencyPos[c].push_back(Vector2(col, row));
             }
         }
     }
@@ -102,26 +102,26 @@ EErrorCode CChallenge_08::SetUp_SecondPart()
 
 EErrorCode CChallenge_08::Run_SecondPart()
 {
-    set<Position> antinodes;
+    set<Vector2> antinodes;
 
     for (FrequencyPosMap::const_iterator it = m_FrequencyPos.begin(); it != m_FrequencyPos.end(); ++it)
     {
-        const vector<Position>& posList = it->second;
+        const vector<Vector2>& posList = it->second;
         if (posList.size() == 1)
             continue;
 
         for (int i = 0; i < posList.size(); ++i)
         {
-            const Position& pos = posList[i];
+            const Vector2& pos = posList[i];
             antinodes.insert(pos);
 
             for (int j = i + 1; j < posList.size(); ++j)
             {
-                const Position& otherPos = posList[j];
+                const Vector2& otherPos = posList[j];
 
-                Position antinode = pos;
+                Vector2 antinode = pos;
 
-                Position posDiff = (pos - otherPos);
+                Vector2 posDiff = (pos - otherPos);
                 while (true)
                 {
                     antinode = antinode + posDiff;
@@ -158,7 +158,7 @@ EErrorCode CChallenge_08::CleanUp_SecondPart()
     return EErrorCode::Success;
 }
 
-bool CChallenge_08::IsPosInMappedArea(const Position& pos) const
+bool CChallenge_08::IsPosInMappedArea(const Vector2& pos) const
 {
     return pos.x >= 0 && pos.x < m_ColCount &&
         pos.y >= 0 && pos.y < m_RowCount;

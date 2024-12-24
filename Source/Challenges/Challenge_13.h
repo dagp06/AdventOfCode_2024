@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Challenges/Common/Challenge.h>
-#include <Helpers/Position.h>
+#include <Helpers/Vector2.h>
 
 using namespace std;
 
@@ -10,9 +10,9 @@ class CChallenge_13 : public CChallenge
 private:
     struct ClawMachine
     {
-        Position m_DeltaA;
-        Position m_DeltaB;
-        Position m_PrizePos;
+        Vector2 m_DeltaA;
+        Vector2 m_DeltaB;
+        Vector2 m_PrizePos;
 
         bool Solve(unsigned long long& buttonAPressed, unsigned long long& buttonBPressed) const;
     };

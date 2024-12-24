@@ -21,28 +21,28 @@ EErrorCode CChallenge_13::SetUp_FirstPart()
 
     for (int i = 0; i < lines.size(); i += 4)
     {
-        m_ClawMachines.push_back(ClawMachine());
+        m_ClawMachines.emplace_back();
         ClawMachine& clawMachine = m_ClawMachines.back();
         // Button A
         vector<string> tempStr;
         FileHelper::SplitLine(lines[i], "Button A: X+", tempStr);
         vector<string> numStr;
         FileHelper::SplitLine(tempStr[1], ", Y+", numStr);
-        clawMachine.m_DeltaA = Position(stoi(numStr[0]), stoi(numStr[1]));
+        clawMachine.m_DeltaA = Vector2(stoi(numStr[0]), stoi(numStr[1]));
 
         // Button B
         tempStr.clear();
         FileHelper::SplitLine(lines[i + 1], "Button B: X+", tempStr);
         numStr.clear();
         FileHelper::SplitLine(tempStr[1], ", Y+", numStr);
-        clawMachine.m_DeltaB = Position(stoi(numStr[0]), stoi(numStr[1]));
+        clawMachine.m_DeltaB = Vector2(stoi(numStr[0]), stoi(numStr[1]));
 
         // Prize
         tempStr.clear();
         FileHelper::SplitLine(lines[i + 2], "Prize: X=", tempStr);
         numStr.clear();
         FileHelper::SplitLine(tempStr[1], ", Y=", numStr);
-        clawMachine.m_PrizePos = Position(stoi(numStr[0]), stoi(numStr[1]));
+        clawMachine.m_PrizePos = Vector2(stoi(numStr[0]), stoi(numStr[1]));
     }
 
     return EErrorCode::Success;
@@ -87,28 +87,28 @@ EErrorCode CChallenge_13::SetUp_SecondPart()
 
     for (int i = 0; i < lines.size(); i += 4)
     {
-        m_ClawMachines.push_back(ClawMachine());
+        m_ClawMachines.emplace_back();
         ClawMachine& clawMachine = m_ClawMachines.back();
         // Button A
         vector<string> tempStr;
         FileHelper::SplitLine(lines[i], "Button A: X+", tempStr);
         vector<string> numStr;
         FileHelper::SplitLine(tempStr[1], ", Y+", numStr);
-        clawMachine.m_DeltaA = Position(stoi(numStr[0]), stoi(numStr[1]));
+        clawMachine.m_DeltaA = Vector2(stoi(numStr[0]), stoi(numStr[1]));
 
         // Button B
         tempStr.clear();
         FileHelper::SplitLine(lines[i + 1], "Button B: X+", tempStr);
         numStr.clear();
         FileHelper::SplitLine(tempStr[1], ", Y+", numStr);
-        clawMachine.m_DeltaB = Position(stoi(numStr[0]), stoi(numStr[1]));
+        clawMachine.m_DeltaB = Vector2(stoi(numStr[0]), stoi(numStr[1]));
 
         // Prize
         tempStr.clear();
         FileHelper::SplitLine(lines[i + 2], "Prize: X=", tempStr);
         numStr.clear();
         FileHelper::SplitLine(tempStr[1], ", Y=", numStr);
-        clawMachine.m_PrizePos = Position(10000000000000 + stoi(numStr[0]), 10000000000000 + stoi(numStr[1]));
+        clawMachine.m_PrizePos = Vector2(10000000000000 + stoi(numStr[0]), 10000000000000 + stoi(numStr[1]));
     }
 
     return EErrorCode::Success;
