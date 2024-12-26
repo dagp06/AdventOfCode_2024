@@ -59,6 +59,9 @@
     <ClCompile Include="Source\Challenges\Common\Challenge.cpp">
       <Filter>Source\Challenges\Common</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Helpers\Direction.cpp">
+      <Filter>Source\Helpers</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Helpers\FileHelpers.cpp">
       <Filter>Source\Helpers</Filter>
     </ClCompile>
@@ -118,10 +121,13 @@
     <ClInclude Include="Source\Generated\GeneratedDefinitions.h">
       <Filter>Source\Generated</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Helpers\Direction.h">
+      <Filter>Source\Helpers</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Helpers\FileHelpers.h">
       <Filter>Source\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Helpers\Position.h">
+    <ClInclude Include="Source\Helpers\Vector2.h">
       <Filter>Source\Helpers</Filter>
     </ClInclude>
   </ItemGroup>

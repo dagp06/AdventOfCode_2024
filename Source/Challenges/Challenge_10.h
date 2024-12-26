@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Challenges/Common/Challenge.h>
+#include <Helpers/Direction.h>
 #include <Helpers/Vector2.h>
 
 #include <unordered_set>
@@ -13,15 +14,6 @@ class CChallenge_10 : public CChallenge
 public:
 
 private:
-    enum class Direction
-    {
-        Up,
-        Right,
-        Down,
-        Left,
-        Count
-    };
-
     virtual EErrorCode SetUp_FirstPart() override;
     virtual EErrorCode Run_FirstPart() override;
     virtual EErrorCode CleanUp_FirstPart() override;
@@ -34,7 +26,6 @@ private:
     bool IsPosInMappedArea(const Vector2& pos) const;
 
     static string const sm_inputFilePath;
-    static Vector2 const sm_directionDeltas[(int)Direction::Count];
 
 
     typedef vector<vector<int>> Map;

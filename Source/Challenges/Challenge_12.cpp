@@ -5,7 +5,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 string const CChallenge_12::sm_inputFilePath = "Inputs/Input_Challenge_12.txt";
-Vector2 const CChallenge_12::sm_directionDeltas[(int)Direction::Count] = { {0, -1}, {1, 0}, {0, 1}, {-1, 0} };
 
 
 
@@ -151,9 +150,9 @@ void CChallenge_12::ComputeRegion_Part1(const char& _plantType, const Vector2 _p
     // Visit neighbors
     for (Direction dir = Direction::Up; dir != Direction::Count; )
     {
-        ComputeRegion_Part1(_plantType, _plantPos + sm_directionDeltas[(int)dir], _regionArea, _regionPerimeter);
+        ComputeRegion_Part1(_plantType, _plantPos + DirectionUtils::GetDelta(dir), _regionArea, _regionPerimeter);
 
-        dir = (Direction)((int)dir + 1);
+        dir = DirectionUtils::GetNext(dir, false);
     }
 }
 
@@ -173,7 +172,7 @@ void CChallenge_12::ComputeRegion_Part2(const char& _plantType, const Vector2 _p
     if (!IsPosInRegion(_plantPos, _plantType))
     {
         // Stepped outside the region, add a fence
-        Vector2 preStepPos = _plantPos - sm_directionDeltas[((int)_incomingDir)];
+        Vector2 preStepPos = _plantPos - DirectionUtils::GetDelta(_incomingDir);
         ComputeEdge(_plantType, preStepPos, _incomingDir, _regionEdges);
         return;
     }
@@ -192,9 +191,9 @@ void CChallenge_12::ComputeRegion_Part2(const char& _plantType, const Vector2 _p
     // Visit neighbors
     for (Direction dir = Direction::Up; dir != Direction::Count; )
     {
-        ComputeRegion_Part2(_plantType, _plantPos + sm_directionDeltas[(int)dir], dir, _regionArea, _regionEdges);
+        ComputeRegion_Part2(_plantType, _plantPos + DirectionUtils::GetDelta(dir), dir, _regionArea, _regionEdges);
 
-        dir = (Direction)((int)dir + 1);
+        dir = DirectionUtils::GetNext(dir, false);
     }
 }
 
@@ -235,11 +234,11 @@ void CChallenge_12::ComputeEdge(const char& _plantType, const Vector2 _plantPos,
         break;
     }
 
-    Vector2 frontSteppingDelta = sm_directionDeltas[(int)_incomingDir];
+    Vector2 frontSteppingDelta = DirectionUtils::GetDelta(_incomingDir);
     for (int i = 0; i < explorationDirs.size(); ++i)
     {
         Direction explorationDir = explorationDirs[i];
-        Vector2 sideSteppingDelta = sm_directionDeltas[(int)explorationDir];
+        Vector2 sideSteppingDelta = DirectionUtils::GetDelta(explorationDir);
 
         Vector2 sideSteppingPos = _plantPos + sideSteppingDelta;
         while (IsPosInRegion(sideSteppingPos, _plantType)) // Edge ends if we side-step outside of current region

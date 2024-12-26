@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Challenges/Common/Challenge.h>
+#include <Helpers/Direction.h>
 #include <Helpers/Vector2.h>
 
 #include <unordered_set>
@@ -10,15 +11,6 @@ using namespace std;
 class CChallenge_12 : public CChallenge
 {
 private:
-    enum class Direction
-    {
-        Up,
-        Right,
-        Down,
-        Left,
-        Count
-    };
-
     struct Edge
     {
         bool operator==(const Edge& _other) const 
@@ -78,7 +70,6 @@ private:
     bool IsPosInRegion(const Vector2& _pos, const char& _regionChar) const;
 
     static string const sm_inputFilePath;
-    static Vector2 const sm_directionDeltas[(int)Direction::Count];
 
     typedef string GardenRow;
     typedef vector<GardenRow> Garden;

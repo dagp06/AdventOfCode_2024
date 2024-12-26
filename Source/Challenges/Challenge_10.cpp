@@ -5,7 +5,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 string const CChallenge_10::sm_inputFilePath = "Inputs/Input_Challenge_10.txt";
-Vector2 const CChallenge_10::sm_directionDeltas[(int)Direction::Count] = { {0, -1}, {1, 0}, {0, 1}, {-1, 0} };
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -140,9 +139,9 @@ void CChallenge_10::FindHikingTrail(const Vector2& _currentPos, int _targetHeigh
 
     for (Direction dir = Direction::Up; dir != Direction::Count; )
     {
-        FindHikingTrail(_currentPos + sm_directionDeltas[(int)dir], _targetHeight + 1, _trailPeaks, _totalScore, _uniqueOnly);
+        FindHikingTrail(_currentPos + DirectionUtils::GetDelta(dir), _targetHeight + 1, _trailPeaks, _totalScore, _uniqueOnly);
 
-        dir = (Direction)((int)dir + 1);
+        dir = DirectionUtils::GetNext(dir, false);
     }
 }
 

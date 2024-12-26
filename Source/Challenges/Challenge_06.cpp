@@ -58,24 +58,7 @@ EErrorCode CChallenge_06::Run_FirstPart()
     Direction guardDirection = Direction::Up;
     while (true)
     {
-        Vector2 nextPosition = m_GuardPos;
-        switch (guardDirection)
-        {
-            case Direction::Up:
-                --nextPosition.y;
-                break;
-            case Direction::Right:
-                ++nextPosition.x;
-                break;
-            case Direction::Down:
-                ++nextPosition.y;
-                break;
-            case Direction::Left:
-                --nextPosition.x;
-                break;
-            default:
-                break;
-        }
+        Vector2 nextPosition = m_GuardPos + DirectionUtils::GetDelta(guardDirection);
 
         // We're done !
         if (!IsPosInMappedArea_1(nextPosition))
@@ -96,7 +79,7 @@ EErrorCode CChallenge_06::Run_FirstPart()
 
             case CChallenge_06::PosState::Obstacle:
                 // Obstacle encountered, must turn
-                guardDirection = static_cast<Direction>((static_cast<int>(guardDirection) + 1) % static_cast<int>(Direction::Count));
+                guardDirection = DirectionUtils::GetNext(guardDirection);
 
             default:
                 break;
@@ -173,24 +156,7 @@ EErrorCode CChallenge_06::Run_SecondPart()
 
     while (true)
     {
-        Vector2 nextPosition = m_GuardPos;
-        switch (guardDirection)
-        {
-            case Direction::Up:
-                --nextPosition.y;
-                break;
-            case Direction::Right:
-                ++nextPosition.x;
-                break;
-            case Direction::Down:
-                ++nextPosition.y;
-                break;
-            case Direction::Left:
-                --nextPosition.x;
-                break;
-            default:
-                break;
-        }
+        Vector2 nextPosition = m_GuardPos + DirectionUtils::GetDelta(guardDirection);
 
         // We're done !
         if (!IsPosInMappedArea_2(nextPosition))
@@ -203,7 +169,7 @@ EErrorCode CChallenge_06::Run_SecondPart()
         if (nextMapPos.m_IsObstacle)
         {
             // Obstacle encountered, must turn
-            guardDirection = static_cast<Direction>((static_cast<int>(guardDirection) + 1) % static_cast<int>(Direction::Count));
+            guardDirection = DirectionUtils::GetNext(guardDirection);
         }
         else
         {
@@ -254,27 +220,10 @@ void CChallenge_06::TestPosAsObstacle(const Vector2& _obstaclePos, const Vector2
     vector<vector<MapPosition>> testMap = m_MapPositions; // Copy map for local test
     testMap[_obstaclePos.y][_obstaclePos.x].m_IsObstacle = true; // Set new pos as obstacle
     Vector2 testPos = _guardPos; // Start in front of the new potential obstacle
-    Direction testDirection = static_cast<Direction>((static_cast<int>(_guardDirection) + 1) % static_cast<int>(Direction::Count)); // Turn right
+    Direction testDirection = DirectionUtils::GetNext(_guardDirection); // Turn right
     while (true)
     {
-        Vector2 nextPosition = testPos;
-        switch (testDirection)
-        {
-            case Direction::Up:
-                --nextPosition.y;
-                break;
-            case Direction::Right:
-                ++nextPosition.x;
-                break;
-            case Direction::Down:
-                ++nextPosition.y;
-                break;
-            case Direction::Left:
-                --nextPosition.x;
-                break;
-            default:
-                break;
-        }
+        Vector2 nextPosition = testPos + DirectionUtils::GetDelta(testDirection);
 
         if (!IsPosInMappedArea_2(nextPosition))
         {
@@ -297,7 +246,7 @@ void CChallenge_06::TestPosAsObstacle(const Vector2& _obstaclePos, const Vector2
         if (nextMapPos.m_IsObstacle)
         {
             // Obstacle encountered, must turn
-            testDirection = static_cast<Direction>((static_cast<int>(testDirection) + 1) % static_cast<int>(Direction::Count));
+            testDirection = DirectionUtils::GetNext(testDirection);
         }
         else
         {

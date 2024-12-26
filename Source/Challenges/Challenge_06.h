@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Challenges/Common/Challenge.h>
+#include <Helpers/Direction.h>
 #include <Helpers/Vector2.h>
 
 #include <set>
@@ -15,15 +16,6 @@ private:
         Free,
         Obstacle,
         Visited
-    };
-
-    enum class Direction
-    {
-        Up,
-        Right,
-        Down,
-        Left,
-        Count
     };
 
     struct MapPosition
