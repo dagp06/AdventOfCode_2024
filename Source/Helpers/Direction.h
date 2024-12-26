@@ -14,6 +14,8 @@ enum class Direction
     Count
 };
 
+ostream& operator<<(ostream& _stream, Direction _dir);
+
 namespace DirectionUtils {
     Vector2 GetDelta(Direction _dir);
     Direction GetOpposite(Direction _dir);

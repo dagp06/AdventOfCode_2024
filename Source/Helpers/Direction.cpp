@@ -1,6 +1,12 @@
 #pragma once
 #include <Helpers/Direction.h>
 
+std::ostream& operator<<(ostream& _stream, Direction _dir)
+{
+    const string dirNames[] = { "Up", "Right", "Down", "Left" };
+    return _stream << dirNames[(int)_dir];
+}
+
 namespace DirectionUtils {
     static const Vector2 sm_directionDeltas[] = { {0, -1}, {1, 0}, {0, 1}, {-1, 0} };
 
