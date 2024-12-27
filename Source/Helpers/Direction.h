@@ -19,5 +19,6 @@ ostream& operator<<(ostream& _stream, Direction _dir);
 namespace DirectionUtils {
     Vector2 GetDelta(Direction _dir);
     Direction GetOpposite(Direction _dir);
+    Direction GetPrev(Direction _dir, bool _autoCycle = true);
     Direction GetNext(Direction _dir, bool _autoCycle = true);
 }

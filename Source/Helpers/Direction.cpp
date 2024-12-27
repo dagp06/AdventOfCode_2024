@@ -20,6 +20,11 @@ namespace DirectionUtils {
         return (Direction)(((int)_dir + 2) % (int)Direction::Count);
     }
 
+    Direction GetPrev(Direction _dir, bool _autoCycle /* = true */)
+    {
+        return _autoCycle ? (Direction)(((int)_dir + 3) % (int)Direction::Count) : (Direction)((int)_dir + 3);
+    }
+
     Direction GetNext(Direction _dir, bool _autoCycle /* = true */)
     {
         return _autoCycle ? (Direction)(((int)_dir + 1) % (int)Direction::Count) : (Direction)((int)_dir + 1);

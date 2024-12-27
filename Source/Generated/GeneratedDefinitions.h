@@ -16,5 +16,6 @@
 #include <Challenges/Challenge_13.h>
 #include <Challenges/Challenge_14.h>
 #include <Challenges/Challenge_15.h>
+#include <Challenges/Challenge_16.h>
 #include <Challenges/Challenge_N.h>
 #pragma endregion challenge_includes
