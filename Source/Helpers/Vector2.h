@@ -42,3 +42,5 @@ struct Vector2Hash
 };
 
 typedef unordered_set<Vector2, Vector2Hash> Vector2Set;
+
+ostream& operator<<(ostream& _stream, Vector2 _vec);

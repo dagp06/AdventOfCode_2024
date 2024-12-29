@@ -62,6 +62,9 @@
     <ClCompile Include="Source\Challenges\Challenge_17.cpp">
       <Filter>Source\Challenges</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Challenges\Challenge_18.cpp">
+      <Filter>Source\Challenges</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Challenges\Challenge_N.cpp">
       <Filter>Source\Challenges</Filter>
     </ClCompile>
@@ -72,6 +75,9 @@
       <Filter>Source\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="Source\Helpers\FileHelpers.cpp">
+      <Filter>Source\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Helpers\Vector2.cpp">
       <Filter>Source\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
@@ -125,6 +131,9 @@
       <Filter>Source\Challenges</Filter>
     </ClInclude>
     <ClInclude Include="Source\Challenges\Challenge_17.h">
+      <Filter>Source\Challenges</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Challenges\Challenge_18.h">
       <Filter>Source\Challenges</Filter>
     </ClInclude>
     <ClInclude Include="Source\Challenges\Challenge_N.h">
