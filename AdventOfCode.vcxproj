@@ -228,6 +228,7 @@
     <ClCompile Include="Source\Challenges\Challenge_17.cpp"/>
     <ClCompile Include="Source\Challenges\Challenge_18.cpp"/>
     <ClCompile Include="Source\Challenges\Challenge_19.cpp"/>
+    <ClCompile Include="Source\Challenges\Challenge_20.cpp"/>
     <ClCompile Include="Source\Challenges\Challenge_N.cpp"/>
     <ClCompile Include="Source\Challenges\Common\Challenge.cpp"/>
     <ClCompile Include="Source\Helpers\Direction.cpp"/>
@@ -254,6 +255,7 @@
     <ClInclude Include="Source\Challenges\Challenge_17.h"/>
     <ClInclude Include="Source\Challenges\Challenge_18.h"/>
     <ClInclude Include="Source\Challenges\Challenge_19.h"/>
+    <ClInclude Include="Source\Challenges\Challenge_20.h"/>
     <ClInclude Include="Source\Challenges\Challenge_N.h"/>
     <ClInclude Include="Source\Challenges\Common\Challenge.h"/>
     <ClInclude Include="Source\CommonDefinitions.h"/>
