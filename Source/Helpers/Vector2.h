@@ -10,6 +10,7 @@ struct Vector2
     Vector2(long long _x = 0, long long _y = 0)
         : x(_x), y(_y) {}
     bool operator==(const Vector2& _other) const { return x == _other.x && y == _other.y; }
+    bool operator!=(const Vector2& _other) const { return !(*this == _other); }
     bool operator<(const Vector2& _other) const { return x < _other.x || (x == _other.x && y < _other.y); }
     Vector2 operator+(const Vector2& _other) const { return { x + _other.x, y + _other.y }; }
     Vector2 operator-(const Vector2& _other) const { return *this + -_other; }
@@ -31,6 +32,8 @@ struct Vector2
 
     long long x = 0;
     long long y = 0;
+
+    static const Vector2 ZERO;
 };
 
 struct Vector2Hash
