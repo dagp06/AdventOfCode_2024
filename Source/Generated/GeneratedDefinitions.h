@@ -22,5 +22,6 @@
 #include <Challenges/Challenge_19.h>
 #include <Challenges/Challenge_20.h>
 #include <Challenges/Challenge_21.h>
+#include <Challenges/Challenge_22.h>
 #include <Challenges/Challenge_N.h>
 #pragma endregion challenge_includes
