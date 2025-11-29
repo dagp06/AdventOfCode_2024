@@ -77,6 +77,9 @@
     <ClCompile Include="Source\Challenges\Challenge_22.cpp">
       <Filter>Source\Challenges</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Challenges\Challenge_23.cpp">
+      <Filter>Source\Challenges</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Challenges\Challenge_N.cpp">
       <Filter>Source\Challenges</Filter>
     </ClCompile>
@@ -158,6 +161,9 @@
       <Filter>Source\Challenges</Filter>
     </ClInclude>
     <ClInclude Include="Source\Challenges\Challenge_22.h">
+      <Filter>Source\Challenges</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Challenges\Challenge_23.h">
       <Filter>Source\Challenges</Filter>
     </ClInclude>
     <ClInclude Include="Source\Challenges\Challenge_N.h">
